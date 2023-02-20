@@ -157,7 +157,10 @@ void render::tabs::Esp() {
 	ImGui::BeginChild("Box ESP", ImVec2(avail.y, guiVars::childSize + 150), true);
 	ImGui::Text("Box ESP");
 	ImGui::Separator();
-	ImGui::Checkbox("Enabled", &config::esp::Box);
+	ImGui::Checkbox("Enabled", &config::esp::enable);
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Checkbox("Box", &config::esp::Box);
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::Checkbox("Health bar", &config::esp::BoxHealth);
@@ -228,7 +231,7 @@ void render::tabs::Misc() {
 	ImGui::EndChild();
 
 	ImGui::BeginChild("Other", ImVec2(avail.y, guiVars::childSize + 100), true);
-	ImGui::Text("Movement");
+	ImGui::Text("Other");
 	ImGui::Separator();
 	ImGui::Spacing();
 	ImGui::Checkbox("Bunny hop", &config::misc::bunnyHop);

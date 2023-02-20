@@ -73,6 +73,7 @@ namespace config {
 	// ESP
 	namespace esp {
 		//// Box
+		inline bool enable = false;
 		inline bool Box = false;
 		inline bool BoxHealth = false;
 		inline bool showName = false;

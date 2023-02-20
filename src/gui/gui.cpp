@@ -128,7 +128,7 @@ void gui::setupMenu(LPDIRECT3DDEVICE9 device) noexcept{
 	io.IniFilename = NULL;
 
 	// Fonts
-	fonts::calibri = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\calibri.ttf", 15.f);
+	fonts::calibri = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\calibri.ttf", 15.5f);
 	fonts::calibriTitle = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\calibri.ttf", 25.f);
 	fonts::calibriMenuItem = io.Fonts->AddFontFromFileTTF("C:\\Windows\\Fonts\\calibri.ttf", 17.5f);
 

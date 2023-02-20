@@ -9,7 +9,7 @@
 
 void esp::box() {
 
-	if (!config::esp::Box) {
+	if (!config::esp::enable) {
 		return;
 	}
 
@@ -17,7 +17,7 @@ void esp::box() {
 
 		if (!esp::tahoma) {
 			esp::tahoma = interfaces::surface->FontCreate();
-			interfaces::surface->SetFontGlyphSet(esp::tahoma, "Tahoma", 13, 550, 0, 0, FONTFLAG_ANTIALIAS);
+			interfaces::surface->SetFontGlyphSet(esp::tahoma, "Tahoma", 12, 600, 0, 0, FONTFLAG_ANTIALIAS);
 		}
 
 		for (int i = 1; i < interfaces::globals->maxClients; i++) {
@@ -52,12 +52,14 @@ void esp::box() {
 			float right = head.x + width;
 			float left = head.x - width;
 
-			interfaces::surface->DrawSetColor(0, 0, 0);
-			interfaces::surface->DrawOutlinedRect((int)left - 0.5, (int)head.y - 0.5, (int)right - 0.5, (int)feet.y - 0.5);
-			interfaces::surface->DrawOutlinedRect((int)left + 0.5, (int)head.y + 0.5, (int)right + 0.5, (int)feet.y + 0.5);
-			
-			interfaces::surface->DrawSetColor(255, 255, 255);
-			interfaces::surface->DrawOutlinedRect((int)left, (int)head.y, (int)right, (int)feet.y);
+			if (config::esp::Box) {
+				interfaces::surface->DrawSetColor(0, 0, 0);
+				interfaces::surface->DrawOutlinedRect((int)left - 0.5, (int)head.y - 0.5, (int)right - 0.5, (int)feet.y - 0.5);
+				interfaces::surface->DrawOutlinedRect((int)left + 0.5, (int)head.y + 0.5, (int)right + 0.5, (int)feet.y + 0.5);
+
+				interfaces::surface->DrawSetColor(255, 255, 255);
+				interfaces::surface->DrawOutlinedRect((int)left, (int)head.y, (int)right, (int)feet.y);
+			}
 
 			if (config::esp::BoxHealth) {
 				int health = entity->GetHealth();
@@ -80,7 +82,6 @@ void esp::box() {
 			}
 
 			if (config::esp::showGun) {
-
 				short weaponID = entity->GetActiveWeapon()->GetWeaponId(interfaces::clientClass);
 				const char* name = GetWeaponNameFromId(weaponID);
 
