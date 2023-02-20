@@ -13,6 +13,7 @@ void visual::chams(void* results, const ModelRenderInfo& info, CMatrix3x4* bones
 	if (vars::localPlayer && info.renderable) {
 		CBaseEntity* entity = info.renderable->GetIClientUnknown()->GetBaseEntity();
 
+		// Enemy
 		if (entity && entity->IsPlayer() && entity->GetTeam() != vars::localPlayer->GetTeam() && entity != vars::localPlayer) {
 
 			IMaterial* mat = interfaces::materialSystem->FindMaterial(config::visuals::chams::material[config::visuals::chams::enemymaterial]);
@@ -35,6 +36,31 @@ void visual::chams(void* results, const ModelRenderInfo& info, CMatrix3x4* bones
 			hooks::DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeight, flexDelayedWeight, modelOrigin, flags);
 			return interfaces::studioRender->ForcedMaterialOverride(nullptr);
 		}
+
+		// Team
+		else if (entity && entity->IsPlayer() && entity->GetTeam() == vars::localPlayer->GetTeam() && entity != vars::localPlayer) {
+
+			IMaterial* mat = interfaces::materialSystem->FindMaterial(config::visuals::chams::material[config::visuals::chams::teammaterial]);
+
+			interfaces::studioRender->SetAlphaModulation(1.f);
+
+			if (config::visuals::chams::__hiddenColoursTeam) {
+				mat->SetMaterialVarFlag(IMaterial::IGNOREZ, true);
+				interfaces::studioRender->SetColorModulation(config::visuals::chams::hiddenColoursTeam);
+				interfaces::studioRender->ForcedMaterialOverride(mat);
+				hooks::DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeight, flexDelayedWeight, modelOrigin, flags);
+			}
+
+			if (config::visuals::chams::__visibleColoursTeam) {
+				mat->SetMaterialVarFlag(IMaterial::IGNOREZ, false);
+				interfaces::studioRender->SetColorModulation(config::visuals::chams::visibleColoursTeam);
+				interfaces::studioRender->ForcedMaterialOverride(mat);
+				hooks::DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeight, flexDelayedWeight, modelOrigin, flags);
+			}
+			hooks::DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeight, flexDelayedWeight, modelOrigin, flags);
+			return interfaces::studioRender->ForcedMaterialOverride(nullptr);
+		}
+
 	}
 	hooks::DrawModelOriginal(interfaces::studioRender, results, info, bones, flexWeight, flexDelayedWeight, modelOrigin, flags);
 }

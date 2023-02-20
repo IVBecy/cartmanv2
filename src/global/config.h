@@ -23,6 +23,12 @@ namespace config {
 			inline float hiddenColoursEnemy[3] = { 0.f,1.f,0.93f };
 			inline float visibleColoursEnemy[3] = { 0.5f,1.f,0.f };
 
+			// Team
+			inline bool __hiddenColoursTeam = false;
+			inline bool __visibleColoursTeam = false;
+			inline float hiddenColoursTeam[3] = { 1.f,0.6f,0.f };
+			inline float visibleColoursTeam[3] = { 0.f,0.46f,1.f };
+
 			// Weapon
 			inline bool entity = false;
 			inline float entityColours[3] = { 1.f,1.f,1.f };
@@ -30,6 +36,7 @@ namespace config {
 			// Materials
 			inline int playermaterial = 0;
 			inline int enemymaterial = 0;
+			inline int teammaterial = 0;
 			inline const char* material[]{ "debug/debugambientcube",
 			"models/extras/speech_info",
 			"models/inventory_items/trophy_majors/crystal_blue",

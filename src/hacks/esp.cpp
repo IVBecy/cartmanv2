@@ -17,7 +17,7 @@ void esp::box() {
 
 		if (!esp::tahoma) {
 			esp::tahoma = interfaces::surface->FontCreate();
-			interfaces::surface->SetFontGlyphSet(esp::tahoma, "Tahoma", 12, 600, 0, 0, FONTFLAG_ANTIALIAS);
+			interfaces::surface->SetFontGlyphSet(esp::tahoma, "Tahoma", 12, 500, 0, 0, FONTFLAG_ANTIALIAS);
 		}
 
 		for (int i = 1; i < interfaces::globals->maxClients; i++) {

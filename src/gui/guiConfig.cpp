@@ -118,7 +118,7 @@ void render::Menu() {
 void render::tabs::Visuals() {
 	ImVec2 avail = ImGui::GetContentRegionAvail();
 	// Chams
-	ImGui::BeginChild("Chams", ImVec2(avail.y, guiVars::childSize + 50), true);
+	ImGui::BeginChild("Chams", ImVec2(avail.y, guiVars::childSize + 110), true);
 	ImGui::Text("Enemy Chams");
 	ImGui::Separator();
 	ImGui::Combo("Enemy material", &config::visuals::chams::enemymaterial, config::visuals::chams::material, 5);
@@ -132,6 +132,26 @@ void render::tabs::Visuals() {
 	ImGui::Checkbox("Hidden layer", &config::visuals::chams::__hiddenColoursEnemy);
 	ImGui::SameLine();
 	ImGui::ColorEdit3("Hidden colours", (float*)&config::visuals::chams::hiddenColoursEnemy, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Spacing();
+
+	ImGui::Text("Team Chams");
+	ImGui::Separator();
+	ImGui::Combo("Team material", &config::visuals::chams::teammaterial, config::visuals::chams::material, 5);
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Checkbox("Visible Layer", &config::visuals::chams::__visibleColoursTeam);
+	ImGui::SameLine();
+	ImGui::ColorEdit3("Visible Colours", (float*)&config::visuals::chams::visibleColoursTeam, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Checkbox("Hidden Layer", &config::visuals::chams::__hiddenColoursTeam);
+	ImGui::SameLine();
+	ImGui::ColorEdit3("Hidden Colours", (float*)&config::visuals::chams::hiddenColoursTeam, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
+
 	ImGui::EndChild();
 
 	// Sky colour
