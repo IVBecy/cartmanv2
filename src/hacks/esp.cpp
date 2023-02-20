@@ -73,7 +73,7 @@ void esp::box() {
 				interfaces::baseEngine->GetPlayerInfo(i, playerinfo);
 				
 				wchar_t buffer[256];
-				MultiByteToWideChar(CP_UTF8, 0, playerinfo.name, -1, buffer, 128);
+				MultiByteToWideChar(CP_UTF8, 0, playerinfo.name, -1, buffer, 256);
 
 				interfaces::surface->DrawSetTextFont(tahoma);
 				interfaces::surface->SetTextColor(255, 255, 255);
@@ -86,7 +86,7 @@ void esp::box() {
 				const char* name = GetWeaponNameFromId(weaponID);
 
 				wchar_t buffer2[256];
-				MultiByteToWideChar(CP_UTF8, 0, name, -1, buffer2, 128);
+				MultiByteToWideChar(CP_UTF8, 0, name, -1, buffer2, 256);
 
 				// Draw
 				interfaces::surface->DrawSetTextFont(tahoma);
