@@ -10,38 +10,27 @@
 ImGuiStyle* guiStyles::setupStyles() {
 	ImGuiStyle* style = &ImGui::GetStyle();
 
-	// Frame
-	style->FramePadding = ImVec2(8, 6);
-	style->FrameRounding = 12;
-
-	// Tabs
-	style->Colors[ImGuiCol_Tab] = ImColor(0, 50, 75, 255);
-	style->Colors[ImGuiCol_TabActive] = guiVars::lightBlue;
-	style->Colors[ImGuiCol_TabHovered] = ImColor(0, 60, 85, 255);
-	style->TabRounding = 4;
-
-	// Button Styles
-	style->ButtonTextAlign = ImVec2(0, 0.5);
-	style->Colors[ImGuiCol_Button] = ImColor(0, 0, 0, 0);
-	style->Colors[ImGuiCol_ButtonActive] = guiVars::darkBlue;
-	style->Colors[ImGuiCol_ButtonHovered] = guiVars::darkBlue;
-
-	style->Colors[ImGuiCol_FrameBg] = guiVars::darkBlue;
-	style->Colors[ImGuiCol_FrameBgHovered] = ImColor(0, 35, 62, 255);
-	style->Colors[ImGuiCol_CheckMark] = guiVars::lightBlue;
-
-	// Grab and sliders
+	// Sliders and grabs
 	style->GrabRounding = 30;
 	style->GrabMinSize = 30;
-	style->Colors[ImGuiCol_SliderGrabActive] = guiVars::lightBlue;
-	style->Colors[ImGuiCol_SeparatorHovered] = guiVars::lightBlue;
 
-	// Scrollbar
-	style->ScrollbarRounding = 12;
+	style->FrameBorderSize = 0.2f;
+	style->FramePadding = ImVec2(8, 6);
+	style->FrameRounding = 12.f;
+	style->Colors[ImGuiCol_FrameBg] = guiVars::midBlue;
+	style->Colors[ImGuiCol_FrameBgHovered] = guiVars::midBlue;
 
-	// Background
-	style->Colors[ImGuiCol_WindowBg] = guiVars::menuBackground;
-	style->Colors[ImGuiCol_ChildBg] = guiVars::childBackground;
+	style->Colors[ImGuiCol_Border] = ImVec4(0.22f, 0.66f, 1.f, 0.5f);
+	style->Colors[ImGuiCol_TitleBgActive] = ImColor(58, 169, 255, 255);
+
+	style->ButtonTextAlign = ImVec2(0, 0.5);
+	style->Colors[ImGuiCol_Button] = guiVars::darkBlue;
+	style->Colors[ImGuiCol_ButtonActive] = ImColor(31, 40, 55, 255);
+	style->Colors[ImGuiCol_ButtonHovered] = ImColor(31, 40, 55, 255);
+
+	style->Colors[ImGuiCol_WindowBg] = guiVars::darkBlue;
+
+	style->Colors[ImGuiCol_CheckMark] = guiVars::lightBlue;
 
 	return style;
 }
@@ -73,14 +62,17 @@ void render::Menu() {
 		gui::tabCounter = 0;
 	}
 	ImGui::Spacing();
+	ImGui::Spacing();
 	if (ImGui::Button("ESP", guiVars::menuButton)) {
 		gui::tabCounter = 1;
 	}
+	ImGui::Spacing();
 	ImGui::Spacing();
 	if(ImGui::Button("Aim", guiVars::menuButton)){
 		gui::tabCounter = 2;
 	}
 	
+	ImGui::Spacing();
 	ImGui::Spacing();
 	if (ImGui::Button("Miscallenous", guiVars::menuButton)) {
 		gui::tabCounter = 3;
@@ -118,12 +110,8 @@ void render::Menu() {
 void render::tabs::Visuals() {
 	ImVec2 avail = ImGui::GetContentRegionAvail();
 	// Chams
-	ImGui::BeginChild("Chams", ImVec2(avail.y, guiVars::childSize + 110), true);
+	ImGui::BeginChild("Chams", ImVec2(avail.y- 25, guiVars::childSize + 50), true);
 	ImGui::Text("Enemy Chams");
-	ImGui::Separator();
-	ImGui::Combo("Enemy material", &config::visuals::chams::enemymaterial, config::visuals::chams::material, 5);
-	ImGui::Spacing();
-	ImGui::Spacing();
 	ImGui::Checkbox("Visible layer", &config::visuals::chams::__visibleColoursEnemy);
 	ImGui::SameLine();
 	ImGui::ColorEdit3("Visible colours", (float*)&config::visuals::chams::visibleColoursEnemy, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
@@ -139,10 +127,6 @@ void render::tabs::Visuals() {
 	ImGui::Spacing();
 
 	ImGui::Text("Team Chams");
-	ImGui::Separator();
-	ImGui::Combo("Team material", &config::visuals::chams::teammaterial, config::visuals::chams::material, 5);
-	ImGui::Spacing();
-	ImGui::Spacing();
 	ImGui::Checkbox("Visible Layer", &config::visuals::chams::__visibleColoursTeam);
 	ImGui::SameLine();
 	ImGui::ColorEdit3("Visible Colours", (float*)&config::visuals::chams::visibleColoursTeam, ImGuiColorEditFlags_NoInputs | ImGuiColorEditFlags_NoLabel);
@@ -155,9 +139,8 @@ void render::tabs::Visuals() {
 	ImGui::EndChild();
 
 	// Sky colour
-	ImGui::BeginChild("Sky settings", ImVec2(avail.y, guiVars::childSize), true);
+	ImGui::BeginChild("Sky settings", ImVec2(avail.y- 25, guiVars::childSize), true);
 	ImGui::Text("Sky");
-	ImGui::Separator();
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::Checkbox("Sky colour", &config::visuals::skyColour);
@@ -174,9 +157,8 @@ void render::tabs::Visuals() {
 // ESP
 void render::tabs::Esp() {
 	ImVec2 avail = ImGui::GetContentRegionAvail();
-	ImGui::BeginChild("Box ESP", ImVec2(avail.y, guiVars::childSize + 150), true);
+	ImGui::BeginChild("Box ESP", ImVec2(avail.y- 25, guiVars::childSize + 150), true);
 	ImGui::Text("Box ESP");
-	ImGui::Separator();
 	ImGui::Checkbox("Enabled", &config::esp::enable);
 	ImGui::Spacing();
 	ImGui::Spacing();
@@ -200,15 +182,12 @@ void render::tabs::Esp() {
 // AIM
 void render::tabs::Aim() {
 	ImVec2 avail = ImGui::GetContentRegionAvail();
-	ImGui::BeginChild("AimBot", ImVec2(avail.y, guiVars::childSize + 150), true);
+	ImGui::BeginChild("AimBot", ImVec2(avail.y- 25, guiVars::childSize + 100), true);
 	ImGui::Text("Aimbot");
-	ImGui::Separator();
-	ImGui::TextDisabled("(?)");
-	if (ImGui::IsItemHovered(ImGuiHoveredFlags_AllowWhenDisabled))
-	{
-		ImGui::SetTooltip("When RCS is selected (see misc)\nsilent aimbot won't work!");
-	}
 	ImGui::Checkbox("Enabled", &config::aim::aimbot);
+	ImGui::Spacing();
+	ImGui::Spacing();
+	ImGui::Checkbox("Silent", &config::aim::silent);
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::SliderFloat("FOV", &config::aim::fov, 0.5f, 89.f);
@@ -217,9 +196,7 @@ void render::tabs::Aim() {
 	ImGui::Combo("Hit box", &config::aim::hitBoxChoice, config::aim::hitboxes, 4);
 	ImGui::Spacing();
 	ImGui::Spacing();
-	ImGui::Checkbox("Silent", &config::aim::silent);
-	ImGui::Spacing();
-	ImGui::Spacing();
+
 	if (!config::aim::silent) {
 		ImGui::SliderFloat("Smoothing", &config::aim::smooth, 0.f, 10.f);
 		ImGui::Spacing();
@@ -228,7 +205,7 @@ void render::tabs::Aim() {
 	}
 	ImGui::EndChild();
 
-	ImGui::BeginChild("Other aim", ImVec2(avail.y, guiVars::childSize - 25), true);
+	ImGui::BeginChild("Other aim", ImVec2(avail.y- 25, guiVars::childSize - 25), true);
 	ImGui::Text("Other aim");
 	ImGui::Separator();
 	ImGui::Checkbox("Recoil compensation", &config::aim::rcs);
@@ -241,18 +218,16 @@ void render::tabs::Aim() {
 // MISC
 void render::tabs::Misc() {
 	ImVec2 avail = ImGui::GetContentRegionAvail();
-	ImGui::BeginChild("Weapon related", ImVec2(avail.y, guiVars::childSize), true);
+	ImGui::BeginChild("Weapon related", ImVec2(avail.y- 25, guiVars::childSize - 50), true);
 	ImGui::Text("Weapon related");
-	ImGui::Separator();
 	ImGui::Checkbox("No flash", &config::misc::noFlash);
 	ImGui::Spacing();
 	ImGui::Spacing();
 	ImGui::Checkbox("Grenade path", &config::misc::nadeTraject);
 	ImGui::EndChild();
 
-	ImGui::BeginChild("Other", ImVec2(avail.y, guiVars::childSize + 100), true);
+	ImGui::BeginChild("Other", ImVec2(avail.y- 25, guiVars::childSize), true);
 	ImGui::Text("Other");
-	ImGui::Separator();
 	ImGui::Spacing();
 	ImGui::Checkbox("Bunny hop", &config::misc::bunnyHop);
 	ImGui::Spacing();

@@ -32,17 +32,6 @@ namespace config {
 			// Weapon
 			inline bool entity = false;
 			inline float entityColours[3] = { 1.f,1.f,1.f };
-
-			// Materials
-			inline int playermaterial = 0;
-			inline int enemymaterial = 0;
-			inline int teammaterial = 0;
-			inline const char* material[]{ "debug/debugambientcube",
-			"models/extras/speech_info",
-			"models/inventory_items/trophy_majors/crystal_blue",
-			"models/inventory_items/trophy_majors/crystal_clear",
-			"models/inventory_items/trophy_majors/gloss",
-			};
 		};
 		
 		//// Sky colour

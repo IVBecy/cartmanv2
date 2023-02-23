@@ -17,14 +17,12 @@ namespace guiVars {
 	inline ImColor childBackground = ImColor(25, 25, 25, 170);
 
 	// Normal Colours
-	inline ImColor lightBlue = ImColor(0, 175, 215, 170);
-	inline ImColor darkBlue = ImColor(0, 0, 0, 170);
-	inline ImColor black = ImColor(0, 0, 0, 255);
-
-	inline ImColor hover = ImColor(25, 25, 25, 170);
+	inline ImColor lightBlue = ImColor(58, 169, 255, 255);
+	inline ImColor darkBlue = ImColor(24, 31, 42, 255);
+	inline ImColor midBlue = ImColor(32, 44, 60, 255);
 
 	// Sizes
-	inline ImVec2 menuButton = ImVec2(150, 40);
+	inline ImVec2 menuButton = ImVec2(150, 60);
 	inline float childSize = 200.f;
 }
 
@@ -32,7 +30,6 @@ namespace guiVars {
 namespace guiStyles{
 	ImGuiStyle* setupStyles();
 }
-
 
 // Rendered views
 namespace render {

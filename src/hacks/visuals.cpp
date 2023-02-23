@@ -16,7 +16,7 @@ void visual::chams(void* results, const ModelRenderInfo& info, CMatrix3x4* bones
 		// Enemy
 		if (entity && entity->IsPlayer() && entity->GetTeam() != vars::localPlayer->GetTeam() && entity != vars::localPlayer) {
 
-			IMaterial* mat = interfaces::materialSystem->FindMaterial(config::visuals::chams::material[config::visuals::chams::enemymaterial]);
+			IMaterial* mat = interfaces::materialSystem->FindMaterial("debug/debugambientcube");
 
 			interfaces::studioRender->SetAlphaModulation(1.f);
 
@@ -40,7 +40,7 @@ void visual::chams(void* results, const ModelRenderInfo& info, CMatrix3x4* bones
 		// Team
 		else if (entity && entity->IsPlayer() && entity->GetTeam() == vars::localPlayer->GetTeam() && entity != vars::localPlayer) {
 
-			IMaterial* mat = interfaces::materialSystem->FindMaterial(config::visuals::chams::material[config::visuals::chams::teammaterial]);
+			IMaterial* mat = interfaces::materialSystem->FindMaterial("debug/debugambientcube");
 
 			interfaces::studioRender->SetAlphaModulation(1.f);
 

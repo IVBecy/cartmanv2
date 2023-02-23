@@ -153,7 +153,7 @@ void gui::render() noexcept{
 	ImGui::NewFrame();
 
 	ImGui::SetNextWindowPos(ImVec2(300,300), ImGuiCond_Once | ImGuiCond_FirstUseEver);
-	ImGui::SetNextWindowSize(ImVec2(650, 550));
+	ImGui::SetNextWindowSize(ImVec2(650, 500));
 
 	ImGui::PushFont(fonts::calibri);
 	ImGui::Begin("Cartman", &show, ImGuiWindowFlags_NoTitleBar | ImGuiWindowFlags_NoResize);
