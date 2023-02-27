@@ -72,8 +72,8 @@ void esp::box() {
 				PlayerInfo playerinfo;
 				interfaces::baseEngine->GetPlayerInfo(i, playerinfo);
 				
-				wchar_t buffer[256];
-				MultiByteToWideChar(CP_UTF8, 0, playerinfo.name, -1, buffer, 256);
+				wchar_t buffer[512];
+				MultiByteToWideChar(CP_UTF8, 0, playerinfo.name, -1, buffer, 512);
 
 				interfaces::surface->DrawSetTextFont(tahoma);
 				interfaces::surface->SetTextColor(255, 255, 255);
@@ -85,8 +85,8 @@ void esp::box() {
 				short weaponID = entity->GetActiveWeapon()->GetWeaponId(interfaces::clientClass);
 				const char* name = GetWeaponNameFromId(weaponID);
 
-				wchar_t buffer2[256];
-				MultiByteToWideChar(CP_UTF8, 0, name, -1, buffer2, 256);
+				wchar_t buffer2[512];
+				MultiByteToWideChar(CP_UTF8, 0, name, -1, buffer2, 512);
 
 				// Draw
 				interfaces::surface->DrawSetTextFont(tahoma);

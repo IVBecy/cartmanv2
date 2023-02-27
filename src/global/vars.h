@@ -6,7 +6,7 @@
 
 namespace vars {
     // Version number
-    inline const char* _v = "Version: 1.1.1";
+    inline const char* _v = "Version: 1.1.2";
 
     // Setup local player
     inline CBaseEntity* localPlayer = 0;
